@@ -12,3 +12,5 @@ def solve(n, k):
     return ans
 
 print(solve(n-1, k-1))
+
+# 파스칼의 삼각형
