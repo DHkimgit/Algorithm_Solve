@@ -1,7 +1,7 @@
 N, K = map(int, input().split())
 L = []
 
-for i in range(3, K-1):
+for i in range(3, N):
     if(N%i == 0):
         L.append(i)
 
