@@ -30,7 +30,7 @@ def findNextNum(x, array, M):
             result = 0
     return result
 
-# 책더미의 맨 위에 1이 존배하는지를 확인하는 변수
+# 책더미의 맨 위에 1이 존배하는지를 확인하는 변수이다.
 find_1 = findNextNum(1, array, M)
 
 if find_1 == 0:
