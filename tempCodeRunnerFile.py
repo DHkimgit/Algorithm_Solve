@@ -1,1 +1,2 @@
 
+while len(result) == N:
