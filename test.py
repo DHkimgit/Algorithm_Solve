@@ -1,7 +1,2 @@
-def DigitSum(x):
-    result = 0
-    for i in str(x):
-        result += int(i)
-    return result
-
-print(DigitSum(345))
+test = [(4, 3), (7, 77)]
+print(test[0][1], test[1][0])
