@@ -6,6 +6,7 @@ cases = list(map(int, input().split()))
 
 table = [0 for x in range(10000001)]
 table_m = [0 for x in range(10000001)]
+
 for i in range(N):
     if cards[i] >= 0:
         table[cards[i]] += 1
