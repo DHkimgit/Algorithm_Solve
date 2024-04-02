@@ -5,6 +5,8 @@ M = int(input())
 if M == 0 or N == 100:
     if N != 100:
         print(min(len(str(N)), abs(N - 100)))
+    elif M == 0 and N == 100:
+        print(0)
     else:
         broke = list(map(int, input().split()))
         print(0)
@@ -40,7 +42,7 @@ else:
             for i in range(length_N):
                 t += str(normal[0])
         table.append(str(t))
-        
+
         if length_N >= 2:
             max_normal = max(normal)
             k = str(max_normal)
