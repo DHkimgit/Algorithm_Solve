@@ -1,2 +1,1 @@
 
-while len(result) == N:

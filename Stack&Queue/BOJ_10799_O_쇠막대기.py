@@ -3,6 +3,7 @@ sticks = str(input())
 stack = []
 result = 0
 height = 0
+
 for i in range(len(sticks)):
     if sticks[i] == '(':
         stack.append(sticks[i])

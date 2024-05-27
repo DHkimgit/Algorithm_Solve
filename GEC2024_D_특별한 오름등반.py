@@ -35,6 +35,9 @@ while queue:
         if mountain[nx][ny] == 'X':
             continue
         
+        if visited[nx][ny] == 1:
+            continue
+        
         queue.append((nx, ny))
         visited[nx][ny] = 1
 
