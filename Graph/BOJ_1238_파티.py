@@ -3,13 +3,12 @@ import heapq
 V, E = map(int, input().split())
 K = int(input())
 
-# 인접 리스트 생성
+# 인접 리스트
 graph = [[] for _ in range(V + 1)]
 for _ in range(E):
     u, v, w = map(int, input().split())
     graph[u].append((v, w))
 
-# 다익스트라 알고리즘 실행
 distance = [float('inf')] * (V + 1)
 distance[K] = 0
 pq = [(0, K)]  # (거리, 노드) 튜플을 우선순위 큐에 저장
