@@ -13,9 +13,9 @@ for i in range(10):
         break
     elif guess > answer:
         print(' 아닙니다. 더 작은 숫자입니다!')
-        max_hint = guess
+        max_hint = guess - 1
     else:
         print(' 아닙니다. 더 큰 숫자입니다!')
-        min_hint = guess
+        min_hint = guess + 1
 
 print(' 게임이 끝났습니다.')
