@@ -1,6 +1,7 @@
 import os
 import time
 import copy
+import math
 
 class ArrayStack :
     def __init__(self, capacity):
@@ -90,7 +91,7 @@ class PriorityQueue :
         if self.isEmpty(): return -1
         highest = 0
         for i in range(1, self.size) :
-            if self.array[i] > self.array[highest] :
+            if self.array[i][2] > self.array[highest][2] :
                 highest = i
         return highest
 
@@ -111,10 +112,8 @@ class PriorityQueue :
 n, m = map(int, input().split())
 
 maze = []
-start_x = 0
-start_y = 0
-end_x = 0
-end_y = 0
+start_x, start_y, end_x, end_y = (0, 0, 0, 0)
+
 for i in range(n):
     maze.append(list(map(int, input().split())))
 
@@ -137,14 +136,20 @@ for i in range(n):
         else:
             pass
 
-def printMaze(start_x, start_y):
+def printMaze(current_x, current_y, end_x, end_y):
     os.system('cls' if os.name == 'nt' else 'clear')
     for i in range(n):
         for j in range(m):
             print(maze[i][j], end=" ")
         print()
-    print(f"현재 위치 : ({start_x}, {start_y})")
+    print(f"현재 위치 : ({current_x}, {current_y})")
+    if current_x == end_x and current_y == end_y:
+        print(" --> 미로 탐색 성공")
     time.sleep(0.5)
+
+def dist(x, y):
+    (dx, dy) = (end_x - x, end_y - y)
+    return math.sqrt(dx*dx + dy*dy)
 
 print(f"현재 위치 : ({start_x}, {start_y})")
 
@@ -170,12 +175,12 @@ def BFS(maze:list):
 
         if (maze_init[y][x] == 3):
             maze[y][x] = "★"
-            printMaze(x, y)
+            printMaze(x, y, end_x, end_y)
             return True
 
         maze[y][x] = "√"
 
-        printMaze(x, y)
+        printMaze(x, y, end_x, end_y)
 
         for i in range(4):
             nx = x + dx[i]
@@ -190,7 +195,6 @@ def BFS(maze:list):
             if maze_init[ny][nx] == 1 or maze_init[ny][nx] == 3:
                 queue.enqueue((nx, ny))
                 visited[ny][nx] = 1
-            
 
     return False
 
@@ -207,12 +211,12 @@ def DFS(maze:list):
 
         if (maze_init[y][x] == 3):
             maze[y][x] = "★"
-            printMaze(x, y)
+            printMaze(x, y, end_x, end_y)
             return True
 
         maze[y][x] = "√"
 
-        printMaze(x, y)
+        printMaze(x, y, end_x, end_y)
 
         for i in range(4):
             nx = x + dx[i]
@@ -230,62 +234,25 @@ def DFS(maze:list):
 
     return False
 
-def BFS(maze:list):
-    
-    queue = CircularQueue()
-    
-    queue.enqueue((start_x, start_y))
-    visited[start_y][start_x] = 1
-
-    while not queue.isEmpty():
-        here = queue.dequeue()
-        x, y = here
-
-        if (maze_init[y][x] == 3):
-            maze[y][x] = "★"
-            printMaze(x, y)
-            return True
-
-        maze[y][x] = "√"
-
-        printMaze(x, y)
-
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-
-            if nx < 0 or ny < 0 or nx >= m or ny >= n:
-                continue
-            
-            if maze_init[ny][nx] == 0 or visited[ny][nx] == 1:
-                continue
-            
-            if maze_init[ny][nx] == 1 or maze_init[ny][nx] == 3:
-                queue.enqueue((nx, ny))
-                visited[ny][nx] = 1
-            
-
-    return False
-
 def Priority(maze:list):
     
     queue = PriorityQueue()
     
-    queue.enqueue((start_x, start_y))
+    queue.enqueue((start_x, start_y, -dist(start_x, start_y)))
     visited[start_y][start_x] = 1
 
     while not queue.isEmpty():
         here = queue.dequeue()
-        x, y = here
+        x, y, _ = here
 
         if (maze_init[y][x] == 3):
             maze[y][x] = "★"
-            printMaze(x, y)
+            printMaze(x, y, end_x, end_y)
             return True
 
         maze[y][x] = "√"
 
-        printMaze(x, y)
+        printMaze(x, y, end_x, end_y)
 
         for i in range(4):
             nx = x + dx[i]
@@ -298,18 +265,22 @@ def Priority(maze:list):
                 continue
             
             if maze_init[ny][nx] == 1 or maze_init[ny][nx] == 3:
-                queue.enqueue((nx, ny))
+                queue.enqueue((nx, ny, -dist(nx, ny)))
                 visited[ny][nx] = 1
             
-
     return False
 
 if order == "1":
-    DFS(maze)
+    if not DFS(maze):
+        print("미로 탈출 실패")
 
 elif order == "2":
-    BFS(maze)
+    if not BFS(maze):
+        print("미로 탈출 실패")
 
 elif order == "3":
-    Priority(maze)
+    if not Priority(maze):
+        print("미로 탈출 실패")
+else:
+    pass
 
