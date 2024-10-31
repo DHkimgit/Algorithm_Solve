@@ -283,4 +283,3 @@ elif order == "3":
         print("미로 탈출 실패")
 else:
     pass
-

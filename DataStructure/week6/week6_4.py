@@ -161,7 +161,6 @@ class Polynomial:
             result_coef = copy.deepcopy(self.coef)
             for i in range(index_rhs):
                 #result_coef[i] *= rhs.coef.getEntry(i)
-                
                 result_coef.multipleData(i, rhs.coef.getEntry(i))
 
         else:

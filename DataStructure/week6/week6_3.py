@@ -42,7 +42,7 @@ class DoublyLinkedDeque:
             if self.front == None :
                 self.rear = None
             else:
-                self.front.prev = None
+                self.front.prev = None 
             return data
 
     def deleteRear(self):
