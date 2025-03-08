@@ -25,7 +25,6 @@ while queue:
             else:
                 queue.append(nx)
                 graph[nx] = graph[x] + 1
-
         else:
             nx = x + dx[i]
             if nx == K:
