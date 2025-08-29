@@ -213,15 +213,41 @@ incomplete2_tree_node2 = TNode(2, incomplete2_tree_node4, None)
 incomplete2_tree_node3 = TNode(2, incomplete2_tree_node6, None)
 incomplete2_tree_node1 = TNode(1, incomplete2_tree_node2, incomplete2_tree_node3)
 
+# 완전 이진트리가 아닌 경우
+#             1
+#           /   \
+#          2     3
+#        /  \   / \
+#       4   5  6   7
+#     / \
+#    8   9
+#  / \
+# 10 11
+incomplete3_tree_node10 = TNode(10, None, None)
+incomplete3_tree_node11 = TNode(11, None, None)
+incomplete3_tree_node9 = TNode(9, None, None)
+incomplete3_tree_node5 = TNode(5, None, None)
+incomplete3_tree_node6 = TNode(6, None, None)
+incomplete3_tree_node7 = TNode(7, None, None)
+incomplete3_tree_node8 = TNode(8, incomplete3_tree_node10, incomplete3_tree_node11)
+incomplete3_tree_node4 = TNode(4, incomplete3_tree_node8, incomplete3_tree_node9)
+incomplete3_tree_node2 = TNode(2, incomplete3_tree_node4, incomplete3_tree_node5)
+incomplete3_tree_node3 = TNode(3, incomplete3_tree_node6, incomplete3_tree_node7)
+incomplete3_tree_node1 = TNode(1, incomplete3_tree_node2, incomplete3_tree_node3)
+
+
 result_complete = is_complete_binary_tree(complete_tree_node1)
 result_incomplete = is_complete_binary_tree(incomplete_tree_node1)
 result_incomplete2 = is_complete_binary_tree(incomplete2_tree_node1)
+result_incomplete3 = is_complete_binary_tree(incomplete3_tree_node1)
 print("완전 이진트리 여부 검사 (완전 이진트리 case1): ", end='')
 print(result_complete)
 print("완전 이진트리 여부 검사 (완전 이진트리 아닌 경우 case2): ", end='')
 print(result_incomplete)
 print("완전 이진트리 여부 검사 (완전 이진트리 아닌 경우 case3): ", end='')
 print(result_incomplete2)
+print("완전 이진트리 여부 검사 (완전 이진트리 아닌 경우 case4): ", end='')
+print(result_incomplete3)
 
 # 8.20 트리의 노드 레벨 검사 함수 테스트 코드
 #       1
